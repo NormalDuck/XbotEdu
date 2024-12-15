@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import competition.electrical_contract.ElectricalContract;
+import competition.operator_interface.OperatorInterface;
+import competition.subsystems.drive.commands.TankDriveWithJoysticksCommand;
 import edu.wpi.first.math.geometry.Translation2d;
 import xbot.common.advantage.AKitLogger;
 import xbot.common.advantage.DataFrameRefreshable;
@@ -47,7 +49,8 @@ public class DriveSubsystem extends BaseDriveSubsystem implements DataFrameRefre
         // You'll need to take these power values and assign them to all of the motors.
         // As an example, here is some code that has the frontLeft motor to spin
         // according to the value of leftPower:
-        frontLeft.set(leftPower);
+        frontLeft.set(leftPower);;
+        frontRight.set(rightPower);
         // TODO: Add code to set the right motors to the rightPower value.
 
     }

@@ -10,6 +10,8 @@ public class DriveToPositionCommand extends BaseCommand {
 
     DriveSubsystem drive;
     PoseSubsystem pose;
+    boolean finished = false;
+    int count = 0;
 
     @Inject
     public DriveToPositionCommand(DriveSubsystem driveSubsystem, PoseSubsystem pose) {
@@ -37,15 +39,23 @@ public class DriveToPositionCommand extends BaseCommand {
 
         // How you do this is up to you. If you get stuck, ask a mentor or student for
         // some hints!
-        drive.tankDrive(0.25,0.25);
-        pose.getPosition();
+        count += 1;
+        if (pose.getPosition() < 4.7 ) {
+            drive.tankDrive(2,2);
+        } else {
+            drive.tankDrive(-0.3,-0.3);
+
+        }
+        if (count == 299) {
+            this.finished = true;
+        }
     }
 
     @Override
     public boolean isFinished() {
         // Modify this to return true once you have met your goal,
         // and you're moving fairly slowly (ideally stopped)
-        return false;
+        return this.finished;
     }
 
 }
